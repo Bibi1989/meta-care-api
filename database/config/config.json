@@ -18,7 +18,7 @@
     "username": "root",
     "password": "",
     "database": "care",
-    "host": "db",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }

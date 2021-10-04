@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:latest
+    # command: mysqld --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=care
+    networks:
+      - mysql-network
+    ports:
+      - "3307:3306"
+    volumes:
+      - db-config:/etc/mysql
+      - db-data:/var/lib/mysql
+      - ./db/backup/files/:/data_backup/data
+
+  server:
+    build:
+      context: .
+    container_name: meta-care-api
+    # environment:
+    #   - DB_USER=localhost
+    #   - DB_USER=root
+    #   - DB_PASSWORD=
+    #   - DB_NAME=meta
+    restart: always
+    ports:
+      - "6000:5005"
+    links:
+      - db
+    depends_on:
+      - db
+    networks:
+      - mysql-network
+
+volumes:
+  db-config:
+  db-data:
+
+networks:
+  mysql-network:
+    name: mysql-network
+    driver: bridge

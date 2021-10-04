@@ -1,0 +1,374 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Meta care assessment",
+    "description": "Star warship movie application",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5005",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "",
+      "description": ""
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/movie": {
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "description": "Create movie",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "opening_crawl",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "release_date",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "director",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "producer",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New movie is created",
+            "schema": {
+              "$ref": "#/definitions/Movies"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/CommentError"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/movies": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Get all movies",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AllMovies"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/comments": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Get all comments",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AllMovies"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/comment": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "parameters": [
+          {
+            "name": "message",
+            "in": "path",
+            "type": "string"
+          },
+          {
+            "name": "movieId",
+            "in": "path",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New comment is created",
+            "schema": {
+              "$ref": "#/definitions/CommentDefinition"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/CommentError"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/characters": {
+      "get": {
+        "tags": [
+          "Characters"
+        ],
+        "summary": "Query by gender",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Characters"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/characters?gender={gender}": {
+      "get": {
+        "tags": [
+          "Characters"
+        ],
+        "parameters": [
+          {
+            "name": "gender",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "summary": "Query by gender",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Characters"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/character": {
+      "post": {
+        "tags": [
+          "Characters"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Characters"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Movies": {
+      "required": [
+        "id",
+        "title",
+        "opening_crawl",
+        "release_date",
+        "director",
+        "producer",
+        "url",
+        "commentCount"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "opening_crawl": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "director": {
+          "type": "string"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "commentCount": {
+          "type": "number"
+        }
+      }
+    },
+    "AllMovies": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "opening_crawl": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "director": {
+          "type": "string"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "commentCount": {
+          "type": "number"
+        }
+      }
+    },
+    "CommentDefinition": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "message": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "movie": {
+          "id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+          "title": {
+            "type": "string"
+          },
+          "opening_crawl": {
+            "type": "string"
+          },
+          "release_date": {
+            "type": "string"
+          },
+          "director": {
+            "type": "string"
+          },
+          "producer": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "commentCount": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "Characters": {
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "height": {
+          "type": "string"
+        },
+        "mass": {
+          "type": "string"
+        },
+        "hair_color": {
+          "type": "string"
+        },
+        "eye_color": {
+          "type": "string"
+        },
+        "skin_color": {
+          "type": "string"
+        },
+        "birth_year": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "homeworld": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "CommentError": {
+      "properties": {
+        "error": {
+          "type": "string",
+          "default": "Could not create comment"
+        }
+      }
+    }
+  }
+}

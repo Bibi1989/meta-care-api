@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "localhost:5005",
+  "host": "https://meta-care-server.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -18,7 +18,8 @@
     }
   ],
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -82,7 +83,7 @@
           "404": {
             "description": "Not Found",
             "schema": {
-              "$ref": "#/definitions/CommentError"
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -100,6 +101,12 @@
             "schema": {
               "$ref": "#/definitions/AllMovies"
             }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/CommentError"
+            }
           }
         }
       }
@@ -115,6 +122,12 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/AllMovies"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/CommentError"
             }
           }
         }
@@ -147,7 +160,7 @@
           "404": {
             "description": "Not Found",
             "schema": {
-              "$ref": "#/definitions/CommentError"
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -164,6 +177,12 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/Characters"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -187,6 +206,12 @@
             "schema": {
               "$ref": "#/definitions/Characters"
             }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
           }
         }
       }
@@ -200,6 +225,12 @@
           "200": {
             "schema": {
               "$ref": "#/definitions/Characters"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -362,7 +393,7 @@
         }
       }
     },
-    "CommentError": {
+    "Error": {
       "properties": {
         "error": {
           "type": "string",

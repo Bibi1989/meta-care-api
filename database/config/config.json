@@ -15,10 +15,6 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "",
-    "database": "care",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "use_env_variable": "mysql://b7579e8054efdd:ff350935@eu-cdbr-west-01.cleardb.com/heroku_cefa6d7a2bece58?reconnect=true"
   }
 }

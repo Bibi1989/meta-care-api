@@ -3,7 +3,7 @@
     "username": "root",
     "password": "",
     "database": "care",
-    "host": "127.0.0.1",
+    "host": "db",
     "dialect": "mysql",
     "socketPath": "/var/run/mysqld/mysqld.sock"
   },
@@ -11,14 +11,14 @@
     "username": "root",
     "password": "",
     "database": "care_test",
-    "host": "127.0.0.1",
+    "host": "db",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "",
     "database": "care",
-    "host": "127.0.0.1",
+    "host": "db",
     "dialect": "mysql"
   }
 }

@@ -2,11 +2,11 @@ version: "3.8"
 
 services:
   db:
-    image: mysql:latest
+    image: mysql
     # command: mysqld --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
       - MYSQL_DATABASE=care
     networks:
       - mysql-network
@@ -21,11 +21,7 @@ services:
     build:
       context: .
     container_name: meta-care-api
-    # environment:
-    #   - DB_USER=localhost
-    #   - DB_USER=root
-    #   - DB_PASSWORD=
-    #   - DB_NAME=meta
+    entrypoint: ["/bin/bash", "./entrypoint.sh"]
     restart: always
     ports:
       - "6000:5005"
